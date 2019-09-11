@@ -1,17 +1,11 @@
-<h1>Customers</h1>
+@extends('layout')
 
-{{--This is php syntax--}}
-{{--{--<ul>--}}
-{{--    php--}}
-{{--        foreach ($customers as $customer) {--}}
-{{--            echo '<li>' . $customer . '</li>';--}}
-{{--        }--}}
-{{--    ?>--}}
-{{--</ul>--}}
+@section('content')
+    <h1>Customers</h1>
 
-{{--This is blade syntax--}}
-<ul>
-    @foreach($customers as $customer)
-        <li>{{ $customer }}</li>
-    @endforeach
-</ul>
+    <ul>
+        @foreach($customers as $customer)
+            <li>{{ $customer }}</li>
+        @endforeach
+    </ul>
+@endsection
