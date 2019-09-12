@@ -15,4 +15,18 @@ class CustomersController extends Controller
             'customers' => $customers,
         ]);
     }
+
+    public function store()
+    {
+        $data = request()->validate([
+            'name' => 'required|min:3'
+        ]);
+
+        //Long form
+        $customer = new Customer();
+        $customer->name = request('name');
+        $customer->save();
+
+        return back();
+    }
 }
