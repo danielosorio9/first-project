@@ -9,8 +9,8 @@ class CustomersController extends Controller
 {
     public function index()
     {
-        $activeCustomers = Customer::where('active', 1)->get();
-        $inactiveCustomers = Customer::where('active', 0)->get();
+        $activeCustomers = Customer::active()->get();
+        $inactiveCustomers = Customer::inactive()->get();
 
         return view('internals.customers', compact('activeCustomers', 'inactiveCustomers'));
     }
@@ -23,12 +23,15 @@ class CustomersController extends Controller
             'active' => 'required'
         ]);
 
-        //Long form
-        $customer = new Customer();
-        $customer->name = request('name');
-        $customer->email = request('email');
-        $customer->active = request('active');
-        $customer->save();
+        //short way
+       Customer::create($data);
+
+//     //Long way
+//     $customer = new Customer();
+//     $customer->name = request('name');
+//     $customer->email = request('email');
+//     $customer->active = request('active');
+//     $customer->save();
 
         return back();
     }
