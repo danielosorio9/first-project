@@ -23,7 +23,10 @@ class ContactFormController extends Controller
 
         Mail::to('test@test.com')->send(new ContactFomMail($data));
 
-        // It should show some thank you message instead of a redirect but it's for testing purposes
-        return redirect('/contact');
+        // Another way that does the same:
+        // session()->flash('message', 'Thanks for your message. We\'ll be in touch.');
+        // return redirect('/contact');
+
+        return redirect('/contact')->with('message', 'Thanks for your message. We\'ll be in touch.');
     }
 }
