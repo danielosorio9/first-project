@@ -18,21 +18,16 @@ class CustomersController extends Controller
     public function create()
     {
         $companies = Company::all();
+        //This empty model resolvers issue of Ep. 17 when a customer is not set
+        $customer = new Customer();
 
-        return view('customers.create', compact('companies'));
+        return view('customers.create', compact('companies', 'customer'));
     }
 
     public function store()
     {
-        $data = request()->validate([
-            'name' => 'required|min:3',
-            'email' => 'required|email',
-            'active' => 'required',
-            'company_id' => 'required'
-        ]);
-
         //short way
-       Customer::create($data);
+       Customer::create($this->validateRequest());
 
 //     //Long way
 //     $customer = new Customer();
@@ -60,13 +55,25 @@ class CustomersController extends Controller
 
     public function update(Customer $customer)
     {
-        $data = request()->validate([
-            'name' => 'required|min:3',
-            'email' => 'required|email',
-        ]);
-
-        $customer->update($data);
+        $customer->update($this->validateRequest());
 
         return redirect('/customers/' . $customer->id);
+    }
+
+    public function destroy(Customer $customer)
+    {
+        $customer->delete();
+
+        return redirect('customers');
+    }
+
+    private function validateRequest()
+    {
+        return request()->validate([
+            'name' => 'required|min:3',
+            'email' => 'required|email',
+            'active' => 'required',
+            'company_id' => 'required'
+        ]);
     }
 }
