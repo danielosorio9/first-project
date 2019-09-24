@@ -27,6 +27,9 @@ Route::view('about', 'about');
 //Route::patch('customers/{customer}', 'CustomersController@update');
 //Route::delete('customers/{customer}', 'CustomersController@destroy');
 
+// One way to add authentication to a controller
+//Route::resource('customers', 'CustomersController')->middleware('auth');
+
 Route::resource('customers', 'CustomersController');
 
 Auth::routes();

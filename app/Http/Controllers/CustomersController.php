@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class CustomersController extends Controller
 {
+    // How to lock from controller and specific method
+//    public function __construct()
+//    {
+//        $this->middleware('auth')->except(['index']);
+//    }
+
     public function index()
     {
         $customers = Customer::all();
