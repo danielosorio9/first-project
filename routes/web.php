@@ -19,6 +19,9 @@ Route::post('contact', 'ContactFormController@store');
 
 Route::view('about', 'about');
 
+// Example on how to use test middleware in route
+//Route::view('about', 'about')->middleware('test');
+
 //Route::get('customers', 'CustomersController@index');
 //Route::get('customers/create', 'CustomersController@create');
 //Route::post('customers', 'CustomersController@store');
