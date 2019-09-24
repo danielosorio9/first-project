@@ -6,10 +6,10 @@
     <h1>Details for {{ $customer->name }}</h1>
     <div class="row">
             <div class="col-6">
-                <p><a href="/customers/{{ $customer->id }}/edit">Edit</a></p>
+                <p><a href="{{ route('customers.edit', ['customer' => $customer]) }}">Edit</a></p>
             </div>
             <div class="col-6" align="left">
-                <form action="/customers/{{ $customer->id }}" method="POST">
+                <form action="{{ route('customers.destroy', ['customer' => $customer]) }}" method="POST">
                     @method('DELETE')
                     @csrf
 
